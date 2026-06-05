@@ -1,7 +1,9 @@
-export default function HomePage() {
+import { ReviewsSection } from "@/sections/home/ReviewsSection";
+
+export default function Page() {
   return (
-    <main className="flex flex-1 items-center justify-center px-6 py-24">
-      <h1 className="text-3xl font-semibold">LunAire</h1>
+    <main>
+      <ReviewsSection />
     </main>
   );
 }

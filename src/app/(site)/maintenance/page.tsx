@@ -1,7 +1,7 @@
-export default function MaintenancePage() {
+export default function Page() {
   return (
-    <main className="flex flex-1 items-center justify-center px-6 py-24">
-      <h1 className="text-3xl font-semibold">Maintenance</h1>
+    <main>
+      <h1>Maintenance</h1>
     </main>
   );
 }
