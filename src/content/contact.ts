@@ -3,4 +3,5 @@ export const contact = {
   email: { label: "info@tudominio.com", href: "mailto:info@tudominio.com" },
   address: { line1: "1234 Main St,", line2: "City, State, ZIP" },
   hours: "Mon-Fri 8:00am-6:00pm | Sat 9:00am-2:00pm",
+  serviceArea: "Phoenix Metro Area",
 };
