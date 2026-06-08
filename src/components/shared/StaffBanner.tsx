@@ -11,7 +11,7 @@ export default function StaffBanner({ imageUrl, title, description }: StaffBanne
   return (
     <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
 
-      {/* Fondo — zoom out sutil al entrar al viewport */}
+      {/* Fondo — zoom out sutil */}
       <motion.div
         className="absolute h-full inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${imageUrl})` }}
@@ -21,8 +21,8 @@ export default function StaffBanner({ imageUrl, title, description }: StaffBanne
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
       />
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-transparent z-10" />
+      {/* OVERLAY CORREGIDO: Transiciona directamente al azul oscuro base del proyecto */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#021d3a] via-[#021d3a]/60 to-transparent z-10" />
 
       {/* Texto */}
       <div className="relative z-20 h-full w-full max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col justify-end items-start text-left mt-10">

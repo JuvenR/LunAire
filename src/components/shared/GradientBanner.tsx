@@ -35,13 +35,10 @@ export default function GradientBanner({
           .animate-marquee {
             display: flex;
             white-space: nowrap;
-            /* La animación durará lo que le pases en la prop 'speed' */
+
             animation: marquee ${speed}s linear infinite;
           }
-          /* Opcional: Pausar la animación si el usuario pasa el mouse por encima */
-          .animate-marquee:hover {
-            animation-play-state: paused;
-          }
+          
         `}
       </style>
 

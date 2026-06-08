@@ -27,7 +27,6 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
       const cardGap = 24;
       const containerWidth = scrollContainerRef.current.offsetWidth;
 
-      // Centra la card activa en el contenedor
       const targetScrollLeft =
         finalIndex * (cardWidth + cardGap) - (containerWidth / 2 - cardWidth / 2);
 
@@ -39,7 +38,9 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
   const scrollRight = () => handleScroll(activeIndex + 1);
 
   return (
-    <section className="relative w-full bg-[radial-gradient(ellipse_at_center,_#053b69_0%,_#021d3a_100%)] py-1 overflow-hidden">
+    // CORREGIDO: Se cambia el fondo plano por un degradado vertical que muere en tu color objetivo #0975BB
+    <section className="relative w-full bg-gradient-to-b from-[#021d3a] to-[#0975BB] pb-16 overflow-hidden">
+      
       <button
         onClick={scrollLeft}
         className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white/90 p-4 rounded-full border border-white/10 transition-all hover:scale-105 active:scale-95 shadow-lg"
@@ -50,7 +51,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
 
       <div
         ref={scrollContainerRef}
-        className="flex overflow-x-auto gap-6 px-24 scroll-smooth snap-x snap-mandatory focus:outline-none py-12"
+        className="flex overflow-x-auto gap-6 px-24 scroll-smooth snap-x snap-mandatory focus:outline-none pt-4 pb-8"
         style={{ scrollbarWidth: 'none', perspective: '1000px' }}
       >
         <style>{`
@@ -66,9 +67,9 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
               key={index}
               onClick={() => handleScroll(index)}
               className={`snap-center shrink-0 w-[270px] h-[300px] aspect-square relative rounded-xl overflow-hidden transition-all duration-500 ease-out cursor-pointer
-                hover:-translate-y-6 hover:opacity-100 hover:z-30 px--3 pt-[-5] items-center 
+                hover:-translate-y-4 hover:opacity-100 hover:z-30 items-center 
                 ${isActive
-                  ? 'scale-101 opacity-100  z-10'
+                  ? 'scale-101 opacity-100 z-10'
                   : 'scale-100 opacity-55 shadow-md shadow-black/40'
                 }`}
             >

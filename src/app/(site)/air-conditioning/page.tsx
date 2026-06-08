@@ -39,8 +39,8 @@ const galleryPhotos = [
 
       <GradientBanner 
         text="Air Conditioning"
-        startColor="#5da3db" 
-        endColor="#0d416b"  
+        startColor="#56BCFF" 
+        endColor="#004273"  
         repeatCount={10}   
       />
       

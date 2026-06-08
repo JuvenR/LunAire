@@ -1,40 +1,40 @@
 "use client";
 import React from 'react';
-import { Snowflake, Wrench, Wind, ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import { motion } from "framer-motion";
 import ServiceCard from '@/components/ui/ServiceCard';
+import { ShieldCheckIcon, SnowflakeIcon, WindIcon, WrenchIcon } from '@phosphor-icons/react';
 
 const servicesData = [
   {
     title: 'Installation and Replacement',
     items: ['Correct system sizing', 'High-efficiency units', 'Calibrated startup'],
-    icon: <Snowflake size={28} weight="regular" />,
+    icon: <SnowflakeIcon size={28} weight="regular" />,
   },
   {
     title: 'Diagnostics and Repair',
     items: ['Electrical inspection', 'Leak detection', 'Critical fault correction'],
-    icon: <Wrench size={28} weight="regular" />,
+    icon: <WrenchIcon size={28} weight="regular" />,
   },
   {
     title: 'Airflow Balancing',
     items: ['Zone distribution', 'Better comfort', 'Fewer hot spots'],
-    icon: <Wind size={28} weight="regular" />,
+    icon: <WindIcon size={28} weight="regular" />,
   },
   {
     title: 'Preventive Maintenance',
     items: ['Component cleaning', 'Performance tuning', 'Breakdown prevention'],
-    icon: <ShieldCheck size={28} weight="regular" />,
+    icon: <ShieldCheckIcon size={28} weight="regular" />,
   },
 ];
 
 export default function ServicesSection() {
   return (
-    <section className="w-full bg-[#f0f6fc] py-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-[#f0f6fc] py-8 px-4 ">
       <div className="max-w-7xl mx-auto">
 
         {/* Título */}
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-[#0f283d] mb-12"
+          className="text-4xl font-bold text-[#0f283d] mb-12 ml-[35px] mt-[10px]"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
@@ -48,8 +48,8 @@ export default function ServicesSection() {
           {servicesData.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 36 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -36 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{
                 duration: 0.55,
