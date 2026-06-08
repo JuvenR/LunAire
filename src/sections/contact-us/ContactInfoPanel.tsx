@@ -1,8 +1,3 @@
-import {
-  ClockIcon,
-  MapPinIcon,
-  PhoneIcon,
-} from "@phosphor-icons/react/dist/ssr";
 import { contact } from "@/content/contact";
 
 const items = [
@@ -10,55 +5,50 @@ const items = [
     label: "Phone",
     value: contact.phone.label,
     href: contact.phone.href,
-    icon: PhoneIcon,
-    accent: "text-[#0a6fa4]",
+    accent: "text-[#0a85c8]",
   },
   {
     label: "Hours",
-    value: contact.hours,
-    icon: ClockIcon,
-    accent: "text-[#bb0014]",
+    value: "Monday - Saturday\n8:00am - 6:00pm",
+    accent: "text-[#9f1830]",
   },
   {
     label: "Service Area",
     value: contact.serviceArea,
-    icon: MapPinIcon,
-    accent: "text-[#1f9d57]",
+    accent: "text-[#4c842d]",
   },
 ] as const;
 
 export function ContactInfoPanel() {
   return (
     <div>
-      <h2 className="text-3xl font-extrabold text-[#0b3a5e]">Our Information</h2>
+      <h2 className="text-4xl font-extrabold tracking-tight text-[#082b45]">
+        Our Information
+      </h2>
 
       <div className="mt-6 flex flex-col gap-4">
-        {items.map((item) => {
-          const Icon = item.icon;
-          return (
-            <div
-              key={item.label}
-              className="flex items-center gap-4 rounded-xl bg-white px-6 py-5 shadow-[0_10px_24px_rgba(28,62,88,0.08)]"
-            >
-              <Icon size={26} weight="fill" className={`shrink-0 ${item.accent}`} />
-              <div>
-                <p className={`text-sm font-bold ${item.accent}`}>{item.label}</p>
-                {"href" in item ? (
-                  <a
-                    href={item.href}
-                    className="text-[15px] font-semibold text-[#1c2b3a] transition-colors hover:text-[#0a6fa4]"
-                  >
-                    {item.value}
-                  </a>
-                ) : (
-                  <p className="text-[15px] font-semibold text-[#1c2b3a]">
-                    {item.value}
-                  </p>
-                )}
-              </div>
-            </div>
-          );
-        })}
+        {items.map((item) => (
+          <div
+            key={item.label}
+            className="flex min-h-[80px] items-center justify-between gap-5 rounded-2xl bg-white px-5 py-4 shadow-[0_8px_18px_rgba(28,62,88,0.16)]"
+          >
+            <p className={`text-2xl font-extrabold ${item.accent}`}>
+              {item.label}
+            </p>
+            {"href" in item ? (
+              <a
+                href={item.href}
+                className="text-right text-xl font-extrabold leading-6 text-[#4a5160] transition-colors hover:text-[#0a6fa4]"
+              >
+                {item.value}
+              </a>
+            ) : (
+              <p className="whitespace-pre-line text-right text-xl font-extrabold leading-6 text-[#4a5160]">
+                {item.value}
+              </p>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
