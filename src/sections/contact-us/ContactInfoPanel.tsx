@@ -32,7 +32,7 @@ export function ContactInfoPanel() {
             key={item.label}
             className="flex min-h-[80px] items-center justify-between gap-5 rounded-2xl bg-white px-5 py-4 shadow-[0_8px_18px_rgba(28,62,88,0.16)]"
           >
-            <p className={`text-2xl font-extrabold ${item.accent}`}>
+            <p className={`text-2xl font-extrabold whitespace-nowrap shrink-0 ${item.accent}`}>
               {item.label}
             </p>
             {"href" in item ? (

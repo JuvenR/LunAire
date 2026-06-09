@@ -9,7 +9,7 @@ import ServicesSection from '@/sections/air-conditioning/ServiceSection';
 
 export default function Page() {
 
-const galleryPhotos = [
+  const galleryPhotos = [
     "/images/ac-installing.png",
     "/images/ac-installing.png",
     "/images/ac-installing.png",
@@ -34,28 +34,29 @@ const galleryPhotos = [
         }
         description="AC installation, repair, and optimization with technical precision and stable results."
         buttonText="Schedule Now"
-        overlayColor="rgba(21, 82, 136, 0.95)" 
+        overlayColor="rgba(21, 82, 136, 0.95)"
       />
 
-      <GradientBanner 
+      <GradientBanner
         text="Air Conditioning"
-        startColor="#56BCFF" 
-        endColor="#004273"  
-        repeatCount={10}   
+        startColor="#56BCFF"
+        endColor="#004273"
+        repeatCount={10}
       />
-      
+
       <ServicesSection />
 
-      <StaffBanner 
-        imageUrl="/images/crew.png"
-        title ="We make things happen"
-        description='See our top-quality installations and reliable repairs that guarantee a cool, comfortable home.'
+      <ImageGallery
+        images={galleryPhotos}
+        title="We make things happen"
+        subtitle="See our top-quality installations and reliable repairs that guarantee a cool, comfortable home."
+        accentColor="#0975BB"
+        bgFrom="#EAF3FB"
+        bgTo="#C5DFF2"
       />
 
-      <ImageGallery images={galleryPhotos} />
-
-      <ServiceBanner 
-        imageSrc="/images/ac-service.png" 
+      <ServiceBanner
+        imageSrc="/images/ac-service.png"
         topTitle="Ready for service"
         mainTitle="We can stabilize your AC this week."
         buttonText="Schedule"
