@@ -22,7 +22,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
   onButtonClick,
 }) => {
   return (
-    <div className="relative w-full min-h-[380px] sm:min-h-[420px] lg:min-h-[450px] flex items-center overflow-hidden">
+    <div className="relative w-full min-h-[205px] sm:min-h-[205px] lg:min-h-[205px] flex items-center overflow-hidden">
 
       {/* Fondo — zoom sutil */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -38,18 +38,18 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
       <div
         className="absolute inset-0 w-full h-full"
         style={{
-          background: `linear-gradient(to right, ${overlayColor} 0%, ${overlayColor} 2%, transparent 100%)`,
+          background: `linear-gradient(to right, ${overlayColor} 0%, ${overlayColor} 1%, transparent 100%)`,
         }}
       />
 
       {/* Contenido */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-8 sm:py-10">
         <div className="max-w-[34rem] text-white">
 
           {/* Subtitle */}
           {subtitle && (
             <motion.p
-              className="text-xs sm:text-sm md:text-base font-semibold tracking-wider uppercase mb-3 text-gray-200"
+              className="text-xs sm:text-sm md:text-base font-semibold tracking-wider uppercase mb-2 text-gray-200"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -60,7 +60,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
 
           {/* Title */}
           <motion.h1
-            className="text-[clamp(2.5rem,10vw,3.75rem)] md:text-6xl font-bold mb-5 leading-tight"
+            className="text-[clamp(2.5rem,10vw,3.75rem)] md:text-6xl font-bold mb-3 leading-tight"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
@@ -71,7 +71,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
           {/* Description */}
           {description && (
             <motion.p
-              className="text-base md:text-lg mb-8 text-gray-100 leading-relaxed max-w-full"
+              className="text-base md:text-lg mb-5 text-gray-100 leading-relaxed max-w-full"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
