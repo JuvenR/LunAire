@@ -25,12 +25,20 @@ export default function ImageGallery({
   const isAnimating = useRef(false);
   const accDeltaX = useRef(0);
   const wheelTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [viewportWidth, setViewportWidth] = useState(1200);
 
-  const R = 1100;
-  const ANGLE_STEP = 16;
-  const SIZE = 240;
-  const CAROUSEL_HEIGHT = 520;
-  const CIRCLE_CENTER_Y = 1280;
+  const galleryScale =
+    viewportWidth < 640
+      ? Math.max(0.62, viewportWidth / 640)
+      : viewportWidth < 1024
+        ? 0.82
+        : 1;
+  const R = 1100 * galleryScale;
+  const ANGLE_STEP = viewportWidth < 640 ? 20 : 16;
+  const SIZE = 240 * galleryScale;
+  const CAROUSEL_HEIGHT = viewportWidth < 640 ? 360 : viewportWidth < 1024 ? 430 : 520;
+  const CIRCLE_CENTER_Y = 1280 * galleryScale;
+  const VISIBLE_RANGE = viewportWidth < 640 ? 1 : 2;
 
   const goNext = useCallback(() => {
     if (isAnimating.current) return;
@@ -66,6 +74,10 @@ export default function ImageGallery({
   }, [goNext, goPrev]);
 
   useEffect(() => {
+    const updateViewportWidth = () => setViewportWidth(window.innerWidth);
+    updateViewportWidth();
+    window.addEventListener('resize', updateViewportWidth);
+
     let startX = 0;
     const onStart = (e: TouchEvent) => { startX = e.touches[0].clientX; };
     const onEnd = (e: TouchEvent) => {
@@ -76,10 +88,13 @@ export default function ImageGallery({
     window.addEventListener('touchstart', onStart, { passive: true });
     window.addEventListener('touchend', onEnd, { passive: true });
     return () => {
+      window.removeEventListener('resize', updateViewportWidth);
       window.removeEventListener('touchstart', onStart);
       window.removeEventListener('touchend', onEnd);
     };
   }, [goNext, goPrev]);
+
+  if (count === 0) return null;
 
   const getOffset = (imgIndex: number) => {
     let offset = imgIndex - activeIndex;
@@ -90,7 +105,7 @@ export default function ImageGallery({
 
   const getPosition = (offset: number) => {
     const abs = Math.abs(offset);
-    const visible = abs <= 2;
+    const visible = abs <= VISIBLE_RANGE;
 
     const angleDeg = 90 - offset * ANGLE_STEP;
     const angleRad = (angleDeg * Math.PI) / 180;
@@ -120,7 +135,7 @@ export default function ImageGallery({
       {/* Header */}
       <div className="px-10 mb-8">
         <motion.h2
-          className="text-5xl font-bold mb-3 ml-[70px]"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:ml-[70px]"
           style={{ color: accentColor }}
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -130,7 +145,7 @@ export default function ImageGallery({
           {title}
         </motion.h2>
         <motion.p
-          className="text-[#424954] text-regular text-[20px] ml-[70px] leading-relaxed"
+          className="text-[#424954] text-base sm:text-[20px] sm:ml-[70px] leading-relaxed max-w-3xl"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-60px" }}

@@ -2,7 +2,6 @@ import GradientBanner from '@/components/shared/GradientBanner';
 import HeroBanner from '@/components/shared/HeroBanner';
 import ImageGallery from '@/components/shared/ImageGallery';
 import ServiceBanner from '@/components/shared/ServiceBanner';
-import StaffBanner from '@/components/shared/StaffBanner';
 import WarningSection from '@/components/shared/WarningSection';
 import ServicesSection from '@/sections/air-conditioning/ServiceSection';
 

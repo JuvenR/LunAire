@@ -29,12 +29,12 @@ const servicesData = [
 
 export default function ServicesSection() {
   return (
-    <section className="w-full bg-[#f0f6fc] py-8 px-4 ">
+    <section className="w-full bg-[#f0f6fc] py-8 px-5 sm:px-6 lg:px-4">
       <div className="max-w-7xl mx-auto">
 
         {/* Título */}
         <motion.h2
-          className="text-5xl font-bold text-[#004273] mb-12 ml-[35px] mt-[7px]"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#004273] mb-19 sm:mb-12 sm:ml-[35px] mt-[7px]"
           initial={{ opacity: 0, y: 7 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
@@ -44,7 +44,7 @@ export default function ServicesSection() {
         </motion.h2>
 
         {/* Grid de cards — cada una entra con stagger */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 sm:gap-y-8">
           {servicesData.map((service, index) => (
             <motion.div
               key={index}

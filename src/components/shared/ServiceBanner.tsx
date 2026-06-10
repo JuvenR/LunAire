@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { motion, useAnimationFrame } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 
 interface ServiceBannerProps {
@@ -28,28 +28,21 @@ export default function ServiceBanner({
 
   return (
     <div
-      className="w-full overflow-hidden"
+      className="w-full overflow-hidden px-4 sm:px-8 lg:px-10 py-8 sm:py-10 flex items-center min-h-[200px] sm:min-h-[220px]"
       style={{
         background: `linear-gradient(to bottom, ${bgFrom}, ${bgTo})`,
-        paddingTop: '20px',
-        paddingBottom: '40px',
-        minHeight: '220px',
-        display: 'flex',
-        alignItems: 'center',
       }}
     >
       {/* Floating card wrapper */}
       <div
         ref={cardRef}
+        className="w-full"
         style={{
-          width: '100%',
-          paddingLeft: '40px',
-          paddingRight: '40px',
           willChange: 'transform',
         }}
       >
         <motion.div
-          className="flex flex-col justify-center items-center px-8 py-8 rounded-[20px]"
+          className="flex flex-col justify-center items-center px-5 sm:px-8 py-8 rounded-[20px]"
           style={{
             background: 'rgba(237, 245, 255, 0.92)',
             // White glow — makes it look like it's lit from within
@@ -67,7 +60,7 @@ export default function ServiceBanner({
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.span
-            className="text-[#848E9F] text-base text-[20px] font-medium mb-3 tracking-wide"
+            className="text-[#848E9F] text-lg sm:text-[20px] font-medium mb-3 tracking-wide text-center"
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -77,7 +70,7 @@ export default function ServiceBanner({
           </motion.span>
 
           <motion.h2
-            className="text-3xl md:text-[40px] lg:text-[40px] font-bold leading-tight mb-8 text-center"
+            className="text-2xl sm:text-3xl md:text-[40px] lg:text-[40px] font-bold leading-tight mb-8 text-center"
             style={{ color: textColor }}
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +88,7 @@ export default function ServiceBanner({
           >
             <Link
               href={buttonHref}
-              className="bg-[#be2e3e] w-[300px] hover:bg-[#a32432] text-white font-semibold px-10 py-3.5 rounded-xl transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] text-base md:text-lg inline-block text-center"
+              className="bg-[#be2e3e] w-full max-w-[300px] hover:bg-[#a32432] text-white font-semibold px-10 py-3.5 rounded-xl transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] text-base md:text-lg inline-block text-center"
 
             >
               {buttonText}

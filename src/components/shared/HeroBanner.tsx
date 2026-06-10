@@ -22,7 +22,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
   onButtonClick,
 }) => {
   return (
-    <div className="relative w-full min-h-[450px] flex items-center overflow-hidden">
+    <div className="relative w-full min-h-[380px] sm:min-h-[420px] lg:min-h-[450px] flex items-center overflow-hidden">
 
       {/* Fondo — zoom sutil */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -43,13 +43,13 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
       />
 
       {/* Contenido */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-xl text-white">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div className="max-w-[34rem] text-white">
 
           {/* Subtitle */}
           {subtitle && (
             <motion.p
-              className="text-sm md:text-base font-semibold tracking-wider uppercase mb-3 text-gray-200"
+              className="text-xs sm:text-sm md:text-base font-semibold tracking-wider uppercase mb-3 text-gray-200"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -60,7 +60,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
 
           {/* Title */}
           <motion.h1
-            className="text-4xl md:text-6xl font-bold mb-5 leading-tight "
+            className="text-[clamp(2.5rem,10vw,3.75rem)] md:text-6xl font-bold mb-5 leading-tight"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
@@ -71,7 +71,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
           {/* Description */}
           {description && (
             <motion.p
-              className="text-base md:text-lg mb-8 text-gray-100 leading-relaxed"
+              className="text-base md:text-lg mb-8 text-gray-100 leading-relaxed max-w-full"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -83,7 +83,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
           {/* Button (CORREGIDO: Ahora sí se desliza hacia arriba con flow) */}
           <motion.button
             onClick={onButtonClick}
-            className="px-10 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/20 rounded-[10px] text-white font-semibold transition-transform hover:scale-105 duration-300 shadow-lg inline-block cursor-pointer"
+            className="w-full sm:w-auto px-8 sm:px-10 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/20 rounded-[10px] text-white font-semibold transition-transform hover:scale-105 duration-300 shadow-lg inline-block cursor-pointer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.7 }}
