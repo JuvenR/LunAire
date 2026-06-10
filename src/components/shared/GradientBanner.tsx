@@ -2,21 +2,35 @@ import React from 'react';
 
 interface GradientBannerProps {
   text: string;
-  startColor: string; 
-  endColor: string;   
-  repeatCount?: number; 
-  speed?: number; 
+  startColor: string;
+  endColor: string;
+  repeatCount?: number;
+  speed?: number;
 }
 
 export default function GradientBanner({
   text,
   startColor,
   endColor,
-  repeatCount = 10,
-  speed = 30, // 20 segundos por defecto
+  repeatCount = 30,
+  speed = 30,
 }: GradientBannerProps) {
-  
   const items = Array.from({ length: repeatCount });
+
+  const Row = () => (
+    <div className="flex items-center">
+      {items.map((_, index) => (
+        <React.Fragment key={index}>
+          <span className="text-white text-lg md:text-xl font-medium px-8">
+            {text}
+          </span>
+          <span className="text-white text-lg px-2 opacity-90">
+            ●
+          </span>
+        </React.Fragment>
+      ))}
+    </div>
+  );
 
   return (
     <div
@@ -25,52 +39,20 @@ export default function GradientBanner({
         background: `linear-gradient(to right, ${startColor}, ${endColor})`,
       }}
     >
-
-      <style>
-        {`
-          @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-          }
-          .animate-marquee {
-            display: flex;
-            white-space: nowrap;
-
-            animation: marquee ${speed}s linear infinite;
-          }
-          
-        `}
-      </style>
-
+      <style>{`
+        @keyframes marquee {
+          0%   { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          display: flex;
+          white-space: nowrap;
+          animation: marquee ${speed}s linear infinite;
+        }
+      `}</style>
       <div className="animate-marquee w-max">
-        
-
-        <div className="flex items-center">
-          {items.map((_, index) => (
-            <React.Fragment key={`first-${index}`}>
-              <span className="text-white text-lg md:text-xl font-medium px-4">
-                {text}
-              </span>
-              <span className="text-white text-xs px-2 opacity-80">
-                ●
-              </span>
-            </React.Fragment>
-          ))}
-        </div>
-
-        <div className="flex items-center">
-          {items.map((_, index) => (
-            <React.Fragment key={`second-${index}`}>
-              <span className="text-white text-lg md:text-xl font-medium px-4">
-                {text}
-              </span>
-              <span className="text-white text-xs px-2 opacity-80">
-                ●
-              </span>
-            </React.Fragment>
-          ))}
-        </div>
-
+        <Row />
+        <Row />
       </div>
     </div>
   );

@@ -124,11 +124,11 @@ export default function ImageGallery({
 
   return (
     <section
-      className="relative w-full select-none overflow-hidden"
+      className="relative w-full select-none overflow-hidden block"
       style={{
         background: `linear-gradient(to bottom, ${bgFrom}, ${bgTo})`,
         paddingTop: '72px',
-        paddingBottom: '32px',
+        paddingBottom: '48px',
       }}
       onWheel={handleWheel}
     >
@@ -155,8 +155,8 @@ export default function ImageGallery({
         </motion.p>
       </div>
 
-      {/* Carousel */}
-      <div style={{ position: 'relative', height: `${CAROUSEL_HEIGHT}px`, width: '100%' }}>
+      {/* Carousel Container */}
+      <div style={{ position: 'relative', height: `${CAROUSEL_HEIGHT}px`, width: '100%', overflow: 'visible' }}>
         {images.map((src, imgIndex) => {
           const offset = getOffset(imgIndex);
           const { cardX, cardY, brightness, opacity, visible } = getPosition(offset);
@@ -166,37 +166,33 @@ export default function ImageGallery({
             <div
               key={imgIndex}
               onClick={() => !isActive && visible && goToIndex(imgIndex)}
+              className="absolute left-1/2 top-0 rounded-full overflow-hidden flex-shrink-0 !max-w-none !max-h-none"
               style={{
-                position: 'absolute',
-                left: '50%',
-                top: 0,
                 width: `${SIZE}px`,
                 height: `${SIZE}px`,
+                minWidth: `${SIZE}px`,
+                minHeight: `${SIZE}px`,
+                aspectRatio: '1 / 1',
                 transform: `translate(calc(-50% + ${cardX}px), ${cardY}px)`,
-                overflow: 'hidden',
                 cursor: isActive || !visible ? 'default' : 'pointer',
                 opacity,
-                borderRadius: '100%',
                 zIndex: 10,
                 boxShadow: isActive
                   ? `0 5px 20px 10px ${accentColor}95`
                   : '0 8px 24px rgba(0,0,0,0.12)',
-                transition: 'transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, box-shadow 0.4s ease',
+                transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, box-shadow 0.4s ease',
                 willChange: 'transform',
               }}
             >
               <img
                 src={src}
                 alt={`Gallery ${imgIndex + 1}`}
+                className="!w-full !h-full !object-cover !max-w-none !max-h-none !block !static"
                 style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  borderRadius: '100%',
-                  display: 'block',
+                  objectPosition: 'center',
                   pointerEvents: 'none',
                   filter: `brightness(${brightness})`,
-                  transition: 'filter 0.55s ease',
+                  transition: 'filter 0.5s ease',
                 }}
                 draggable={false}
               />
@@ -205,9 +201,9 @@ export default function ImageGallery({
         })}
       </div>
 
-      {/* Botones de navegación — centrados sobre los dots */}
+      {/* Botones de navegación */}
       <motion.div
-        className="flex justify-center gap-4 mb-7 mt-[-4px]"
+        className="flex justify-center gap-4 mb-7 mt-6"
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

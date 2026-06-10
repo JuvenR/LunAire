@@ -47,7 +47,7 @@ export default function Page() {
         }
         description="AC installation, repair, and optimization with technical precision and stable results."
         buttonText="Schedule Now"
-        overlayColor="rgba(21, 82, 136, 0.95)"
+        overlayColor="#0070B8"
       />
 
       <GradientBanner
