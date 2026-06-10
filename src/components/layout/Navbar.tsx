@@ -19,7 +19,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50">
       {/* Top utility bar */}
       <div className=" border-b border-white/10 bg-[linear-gradient(98deg,#003d69_0%,#00558e_68%,#0c1828_100%)]">
-        <div className="mx-auto flex h-[42px] max-w-[1760px] items-center justify-center gap-6 px-2 text-[15px] text-white/95 sm:justify-end sm:gap-10 lg:px-12">
+        <div className="mx-auto flex h-[36px] max-w-[1760px] items-center justify-center gap-6 px-2 text-[13px] text-white/95 sm:justify-end sm:gap-10 lg:px-12">
           <a
             href={contact.phone.href}
             className="flex items-center gap-2 transition hover:text-white/80"
@@ -39,7 +39,7 @@ export function Navbar() {
 
       {/* Main bar */}
       <div className="border-b border-[#c0c7d2] bg-white/90 backdrop-blur-xl">
-        <div className="mx-auto flex h-[100px] max-w-[1760px] items-center gap-6 px-6 lg:gap-9 lg:px-12">
+        <div className="mx-auto flex h-[85px] max-w-[1760px] items-center gap-6 px-6 lg:gap-9 lg:px-12">
           {/* Brand */}
           <Link
             href="/"
@@ -75,7 +75,7 @@ export function Navbar() {
                 <div key={item.label} className="group relative">
                   <button
                     type="button"
-                    className="flex items-center gap-2 text-[16px] font-semibold text-[#404751] transition-colors group-hover:text-[#003d69]"
+                    className="flex items-center gap-2 text-[14px] font-semibold text-[#404751] transition-colors group-hover:text-[#003d69]"
                   >
                     <span className="relative">
                       {item.label}
@@ -105,7 +105,7 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href!}
-                  className="group relative text-[16px] font-semibold text-[#404751] transition-colors hover:text-[#003d69]"
+                  className="group relative text-[14px] font-semibold text-[#404751] transition-colors hover:text-[#003d69]"
                 >
                   {item.label}
                   <span className={underline} />
@@ -116,7 +116,7 @@ export function Navbar() {
             <span aria-hidden className="h-9 w-px bg-[#c0c7d2]" />
 
             {/* Language toggle (visual only — no i18n wired yet) */}
-            <div className="inline-flex h-15 items-center gap-2 rounded-md border border-[#c0c7d2] bg-white/70 px-4 transition-colors hover:border-[#00558e] hover:bg-white">
+            <div className="inline-flex h-11 items-center gap-2 rounded-md border border-[#c0c7d2] bg-white/70 px-4 transition-colors hover:border-[#00558e] hover:bg-white">
               <TranslateIcon size={16} className="text-[#00558e]" />
               <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#404751]">
                 {site.languages[0]}
@@ -131,7 +131,7 @@ export function Navbar() {
 
             <Link
               href={site.scheduleHref}
-              className="inline-flex h-15 items-center rounded-md bg-[#004273] px-10 text-[16px] font-bold tracking-wide text-white  transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0292a]"
+              className="inline-flex h-11 items-center rounded-md bg-[#004273] px-10 text-[14px] font-bold tracking-wide text-white  transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#e0292a]"
             >
               Schedule Online
             </Link>

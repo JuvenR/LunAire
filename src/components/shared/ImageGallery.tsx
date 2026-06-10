@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState, useCallback, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { CaretLeft, CaretRight } from "@phosphor-icons/react/dist/ssr";
 
 interface ImageGalleryProps {
@@ -25,11 +26,11 @@ export default function ImageGallery({
   const accDeltaX = useRef(0);
   const wheelTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const R = 1000; 
-  const ANGLE_STEP = 14; 
-  const SIZES = [280, 220, 175];
-  const CAROUSEL_HEIGHT = 480;
-  const CIRCLE_CENTER_Y = 1220; 
+  const R = 1100;
+  const ANGLE_STEP = 16;
+  const SIZE = 240;
+  const CAROUSEL_HEIGHT = 520;
+  const CIRCLE_CENTER_Y = 1280;
 
   const goNext = useCallback(() => {
     if (isAnimating.current) return;
@@ -94,20 +95,16 @@ export default function ImageGallery({
     const angleDeg = 90 - offset * ANGLE_STEP;
     const angleRad = (angleDeg * Math.PI) / 180;
 
-    const dx = Math.cos(angleRad) * R; 
-    const dy = -Math.sin(angleRad) * R; 
+    const dx = Math.cos(angleRad) * R;
+    const dy = -Math.sin(angleRad) * R;
 
-    const size = SIZES[Math.min(abs, SIZES.length - 1)];
-    
-    // CAMBIO APLICADO: Redondeamos a 2 decimales para evitar el Hydration Mismatch
-    const cardX = dx.toFixed(2); 
-    const cardY = (CIRCLE_CENTER_Y + dy - size / 2).toFixed(2);
+    const cardX = parseFloat(dx.toFixed(2));
+    const cardY = parseFloat((CIRCLE_CENTER_Y + dy - SIZE / 2).toFixed(2));
 
-    const brightness = abs === 0 ? 1 : abs === 1 ? 0.5 : 0.3;
-    const zIndex = abs === 0 ? 50 : abs === 1 ? 20 : 10;
+    const brightness = abs === 0 ? 1 : abs === 1 ? 0.45 : 0.25;
     const opacity = visible ? 1 : 0;
 
-    return { cardX, cardY, size, brightness, zIndex, opacity, visible };
+    return { cardX, cardY, brightness, opacity, visible };
   };
 
   return (
@@ -115,31 +112,39 @@ export default function ImageGallery({
       className="relative w-full select-none overflow-hidden"
       style={{
         background: `linear-gradient(to bottom, ${bgFrom}, ${bgTo})`,
-        paddingTop: '52px',
+        paddingTop: '72px',
         paddingBottom: '32px',
       }}
       onWheel={handleWheel}
     >
+      {/* Header */}
       <div className="px-10 mb-8">
-        <h2 className="text-4xl font-bold mb-3" style={{ color: accentColor }}>
+        <motion.h2
+          className="text-5xl font-bold mb-3 ml-[70px]"
+          style={{ color: accentColor }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
           {title}
-        </h2>
-        <p className="text-gray-500 text-base max-w-lg leading-relaxed">{subtitle}</p>
+        </motion.h2>
+        <motion.p
+          className="text-[#424954] text-regular text-[20px] ml-[70px] leading-relaxed"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {subtitle}
+        </motion.p>
       </div>
 
+      {/* Carousel */}
       <div style={{ position: 'relative', height: `${CAROUSEL_HEIGHT}px`, width: '100%' }}>
-
-        <button
-          onClick={goPrev}
-          className="absolute left-4 z-50 p-3 rounded-full border transition-all hover:scale-105 active:scale-95 shadow-md bg-white/80"
-          style={{ top: '45%', transform: 'translateY(-50%)', borderColor: accentColor, color: accentColor }}
-        >
-          <CaretLeft size={22} weight="bold" />
-        </button>
-
         {images.map((src, imgIndex) => {
           const offset = getOffset(imgIndex);
-          const { cardX, cardY, size, brightness, zIndex, opacity, visible } = getPosition(offset);
+          const { cardX, cardY, brightness, opacity, visible } = getPosition(offset);
           const isActive = offset === 0;
 
           return (
@@ -150,18 +155,18 @@ export default function ImageGallery({
                 position: 'absolute',
                 left: '50%',
                 top: 0,
-                width: `${size}px`,
-                height: `${size}px`,
+                width: `${SIZE}px`,
+                height: `${SIZE}px`,
                 transform: `translate(calc(-50% + ${cardX}px), ${cardY}px)`,
-                borderRadius: '50%',
                 overflow: 'hidden',
                 cursor: isActive || !visible ? 'default' : 'pointer',
                 opacity,
-                zIndex,
+                borderRadius: '100%',
+                zIndex: 10,
                 boxShadow: isActive
-                  ? `0 20px 60px 8px ${accentColor}55`
-                  : '0 8px 24px rgba(0,0,0,0.15)',
-                transition: 'transform 0.55s cubic-bezier(0.4,0,0.2,1), width 0.55s ease, height 0.55s ease, opacity 0.4s ease, box-shadow 0.4s ease',
+                  ? `0 5px 20px 10px ${accentColor}95`
+                  : '0 8px 24px rgba(0,0,0,0.12)',
+                transition: 'transform 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease, box-shadow 0.4s ease',
                 willChange: 'transform',
               }}
             >
@@ -172,6 +177,7 @@ export default function ImageGallery({
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
+                  borderRadius: '100%',
                   display: 'block',
                   pointerEvents: 'none',
                   filter: `brightness(${brightness})`,
@@ -182,17 +188,40 @@ export default function ImageGallery({
             </div>
           );
         })}
+      </div>
 
+      {/* Botones de navegación — centrados sobre los dots */}
+      <motion.div
+        className="flex justify-center gap-4 mb-7 mt-[-4px]"
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <button
+          onClick={goPrev}
+          className="p-3 rounded-full transition-all hover:scale-105 active:scale-95 shadow-md"
+          style={{ backgroundColor: accentColor, color: 'white' }}
+        >
+          <CaretLeft size={22} weight="bold" />
+        </button>
         <button
           onClick={goNext}
-          className="absolute right-4 z-50 p-3 rounded-full border transition-all hover:scale-105 active:scale-95 shadow-md bg-white/80"
-          style={{ top: '45%', transform: 'translateY(-50%)', borderColor: accentColor, color: accentColor }}
+          className="p-3 rounded-full transition-all hover:scale-105 active:scale-95 shadow-md"
+          style={{ backgroundColor: accentColor, color: 'white' }}
         >
           <CaretRight size={22} weight="bold" />
         </button>
-      </div>
+      </motion.div>
 
-      <div className="flex justify-center gap-2 mt-2">
+      {/* Dots */}
+      <motion.div
+        className="flex justify-center gap-2 mt-3"
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      >
         {images.map((_, index) => (
           <button
             key={index}
@@ -209,7 +238,7 @@ export default function ImageGallery({
             }}
           />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

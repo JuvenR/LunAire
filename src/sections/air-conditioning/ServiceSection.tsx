@@ -34,13 +34,13 @@ export default function ServicesSection() {
 
         {/* Título */}
         <motion.h2
-          className="text-4xl font-bold text-[#0f283d] mb-12 ml-[35px] mt-[10px]"
-          initial={{ opacity: 0, y: 24 }}
+          className="text-5xl font-bold text-[#004273] mb-12 ml-[35px] mt-[7px]"
+          initial={{ opacity: 0, y: 7 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
-          AC Services
+          Air Conditioning Services
         </motion.h2>
 
         {/* Grid de cards — cada una entra con stagger */}

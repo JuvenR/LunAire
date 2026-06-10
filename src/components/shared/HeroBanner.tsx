@@ -22,22 +22,23 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
   onButtonClick,
 }) => {
   return (
-    <div className="relative w-full min-h-[550px] flex items-center overflow-hidden">
+    <div className="relative w-full min-h-[450px] flex items-center overflow-hidden">
 
       {/* Fondo — zoom sutil */}
-      <motion.div
-        className="absolute inset-0 w-full h-full bg-cover bg-center"
-        style={{ backgroundImage: `url(${imageUrl})` }}
-        initial={{ scale: 1.08 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-      />
-
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <motion.div
+          className="absolute inset-0 w-full h-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${imageUrl})` }}
+          initial={{ scale: 1.05 }}
+          animate={{ scale: 1.13 }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </div>
       {/* Overlay */}
       <div
         className="absolute inset-0 w-full h-full"
         style={{
-          background: `linear-gradient(to right, ${overlayColor} 0%, ${overlayColor} 10%, transparent 100%)`,
+          background: `linear-gradient(to right, ${overlayColor} 0%, ${overlayColor} 2%, transparent 100%)`,
         }}
       />
 
